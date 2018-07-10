@@ -6,15 +6,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name="Taqueria.findAll", query="SELECT t FROM Taqueria t")
 public class Taqueria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +39,11 @@ public class Taqueria implements Serializable {
 	private String telefono;
 
 	private String ubicacion;
+	
+	//bi-directional many-to-one association to TaqueriaTipo
+		@ManyToOne(fetch=FetchType.LAZY)
+		@JoinColumn(name="taq_tipo_id")
+		private TaqueriaTipo taqueriaTipo;
 
 	public Long getTaqId() {
 		return taqId;
@@ -103,6 +109,12 @@ public class Taqueria implements Serializable {
 		this.ubicacion = ubicacion;
 	}
 
-	
+	public TaqueriaTipo getTaqueriaTipo() {
+		return this.taqueriaTipo;
+	}
+
+	public void setTaqueriaTipo(TaqueriaTipo taqueriaTipo) {
+		this.taqueriaTipo = taqueriaTipo;
+	}
 
 }
