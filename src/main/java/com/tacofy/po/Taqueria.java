@@ -3,6 +3,7 @@ package com.tacofy.po;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,14 +24,14 @@ public class Taqueria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="taq_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "taq_id")
 	private Long taqId;
 
 	private BigDecimal calificacion;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="fecha_creacion")
+	@Column(name = "fecha_creacion")
 	private Date fechaCreacion;
 
 	private BigDecimal latitud;
@@ -39,11 +43,31 @@ public class Taqueria implements Serializable {
 	private String telefono;
 
 	private String ubicacion;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "taq_tipo_id")
+	private TaqueriaTipo taqueriaTipo;
+
+	@ManyToMany
+	@JoinTable(name = "taqueria_amenidad", joinColumns = { @JoinColumn(name = "taq_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "amenidad_id") })
+	private List<Amenidad> amenidads;
 	
-	//bi-directional many-to-one association to TaqueriaTipo
-		@ManyToOne(fetch=FetchType.LAZY)
-		@JoinColumn(name="taq_tipo_id")
-		private TaqueriaTipo taqueriaTipo;
+	@ManyToMany
+	@JoinTable(
+		name="taqueria_taco_tipo"
+		, joinColumns={
+			@JoinColumn(name="taq_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="taco_tipo_id")
+			}
+		)
+	private List<TacoTipo> tacoTipos;
+	
+	@OneToMany
+	@JoinColumn(name="taq_id")
+	private List<TaqueriaFoto> taqueriaFotos;
 
 	public Long getTaqId() {
 		return taqId;
@@ -115,6 +139,30 @@ public class Taqueria implements Serializable {
 
 	public void setTaqueriaTipo(TaqueriaTipo taqueriaTipo) {
 		this.taqueriaTipo = taqueriaTipo;
+	}
+
+	public List<Amenidad> getAmenidads() {
+		return amenidads;
+	}
+
+	public void setAmenidads(List<Amenidad> amenidads) {
+		this.amenidads = amenidads;
+	}
+
+	public List<TacoTipo> getTacoTipos() {
+		return tacoTipos;
+	}
+
+	public void setTacoTipos(List<TacoTipo> tacoTipos) {
+		this.tacoTipos = tacoTipos;
+	}
+
+	public List<TaqueriaFoto> getTaqueriaFotos() {
+		return taqueriaFotos;
+	}
+
+	public void setTaqueriaFotos(List<TaqueriaFoto> taqueriaFotos) {
+		this.taqueriaFotos = taqueriaFotos;
 	}
 
 }
