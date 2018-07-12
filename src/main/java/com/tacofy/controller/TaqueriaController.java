@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tacofy.po.Taqueria;
+import com.tacofy.bo.TaqueriaBO;
 import com.tacofy.service.TaqueriaService;
 
 @Controller
@@ -22,11 +22,11 @@ public class TaqueriaController {
 	
 	@RequestMapping(value="/taquerias",method= RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<?> getTaquerias() {
-		List<Taqueria> list = taqueriaService.getTaquerias();
+		List<TaqueriaBO> list = taqueriaService.getTaquerias();
 		list.forEach(taq ->{
 			System.out.println(taq.getNombre());
-			System.out.println(taq.getTaqueriaTipo().getDescripcion());
+
 		});
-		return new ResponseEntity<List<Taqueria>>(list,HttpStatus.OK);
+		return new ResponseEntity<List<TaqueriaBO>>(list,HttpStatus.OK);
 	}
 }

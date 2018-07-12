@@ -2,11 +2,11 @@ package com.tacofy.service;
 
 import java.util.List;
 
-import com.tacofy.po.Taqueria;
+import com.tacofy.bo.TaqueriaBO;
 
 public interface TaqueriaService {
 	
-	List<Taqueria> getTaquerias();
+	List<TaqueriaBO> getTaquerias();
 	
 	
 }

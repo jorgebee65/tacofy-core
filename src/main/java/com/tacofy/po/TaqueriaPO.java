@@ -16,11 +16,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Taqueria implements Serializable {
+@Table(name="taqueria")
+public class TaqueriaPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -46,12 +48,13 @@ public class Taqueria implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "taq_tipo_id")
-	private TaqueriaTipo taqueriaTipo;
+	private TaqueriaTipoPO taqueriaTipoPO;
 
 	@ManyToMany
-	@JoinTable(name = "taqueria_amenidad", joinColumns = { @JoinColumn(name = "taq_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "amenidad_id") })
-	private List<Amenidad> amenidads;
+	@JoinTable(name = "taqueria_amenidad", 
+		joinColumns = { @JoinColumn(name = "taq_id") }, 
+		inverseJoinColumns = {@JoinColumn(name = "amenidad_id") })
+	private List<AmenidadPO> amenidads;
 	
 	@ManyToMany
 	@JoinTable(
@@ -63,11 +66,11 @@ public class Taqueria implements Serializable {
 			@JoinColumn(name="taco_tipo_id")
 			}
 		)
-	private List<TacoTipo> tacoTipos;
+	private List<TacoTipoPO> tacoTipos;
 	
 	@OneToMany
 	@JoinColumn(name="taq_id")
-	private List<TaqueriaFoto> taqueriaFotos;
+	private List<TaqueriaFotoPO> taqueriaFotos;
 
 	public Long getTaqId() {
 		return taqId;
@@ -133,35 +136,35 @@ public class Taqueria implements Serializable {
 		this.ubicacion = ubicacion;
 	}
 
-	public TaqueriaTipo getTaqueriaTipo() {
-		return this.taqueriaTipo;
+	public TaqueriaTipoPO getTaqueriaTipoPO() {
+		return this.taqueriaTipoPO;
 	}
 
-	public void setTaqueriaTipo(TaqueriaTipo taqueriaTipo) {
-		this.taqueriaTipo = taqueriaTipo;
+	public void setTaqueriaTipoPO(TaqueriaTipoPO taqueriaTipo) {
+		this.taqueriaTipoPO = taqueriaTipo;
 	}
 
-	public List<Amenidad> getAmenidads() {
+	public List<AmenidadPO> getAmenidads() {
 		return amenidads;
 	}
 
-	public void setAmenidads(List<Amenidad> amenidads) {
+	public void setAmenidads(List<AmenidadPO> amenidads) {
 		this.amenidads = amenidads;
 	}
 
-	public List<TacoTipo> getTacoTipos() {
+	public List<TacoTipoPO> getTacoTipos() {
 		return tacoTipos;
 	}
 
-	public void setTacoTipos(List<TacoTipo> tacoTipos) {
+	public void setTacoTipos(List<TacoTipoPO> tacoTipos) {
 		this.tacoTipos = tacoTipos;
 	}
 
-	public List<TaqueriaFoto> getTaqueriaFotos() {
+	public List<TaqueriaFotoPO> getTaqueriaFotos() {
 		return taqueriaFotos;
 	}
 
-	public void setTaqueriaFotos(List<TaqueriaFoto> taqueriaFotos) {
+	public void setTaqueriaFotos(List<TaqueriaFotoPO> taqueriaFotos) {
 		this.taqueriaFotos = taqueriaFotos;
 	}
 

@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tacofy.bo.TaqueriaBO;
+import com.tacofy.builder.TaqueriaBuilder;
 import com.tacofy.dao.TaqueriaDAO;
-import com.tacofy.po.Taqueria;
 import com.tacofy.service.TaqueriaService;
 
 @Service
@@ -16,8 +17,8 @@ public class TaqueriaServiceImpl implements TaqueriaService {
 	private TaqueriaDAO taqueriaDAO;
 
 	@Override
-	public List<Taqueria> getTaquerias() {
-		return taqueriaDAO.getTaquerias();
+	public List<TaqueriaBO> getTaquerias() {
+		return TaqueriaBuilder.buildListBO(taqueriaDAO.getTaquerias());
 	}
 	
 }

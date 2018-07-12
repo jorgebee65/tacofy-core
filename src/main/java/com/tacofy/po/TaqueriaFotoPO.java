@@ -1,9 +1,13 @@
 package com.tacofy.po;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 /**
@@ -12,27 +16,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @Entity
 @Table(name="taqueria_fotos")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TaqueriaFoto implements Serializable {
+public class TaqueriaFotoPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="taq_foto_id")
-	private int taqFotoId;
+	private Long taqFotoId;
 
 	private String ruta;
 
-	private Taqueria taqueria;
+	private TaqueriaPO taqueria;
 
-	public TaqueriaFoto() {
+	public TaqueriaFotoPO() {
 	}
 
-	public int getTaqFotoId() {
+	public Long getTaqFotoId() {
 		return this.taqFotoId;
 	}
 
-	public void setTaqFotoId(int taqFotoId) {
+	public void setTaqFotoId(Long taqFotoId) {
 		this.taqFotoId = taqFotoId;
 	}
 
@@ -44,11 +47,11 @@ public class TaqueriaFoto implements Serializable {
 		this.ruta = ruta;
 	}
 
-	public Taqueria getTaqueria() {
+	public TaqueriaPO getTaqueria() {
 		return this.taqueria;
 	}
 
-	public void setTaqueria(Taqueria taqueria) {
+	public void setTaqueria(TaqueriaPO taqueria) {
 		this.taqueria = taqueria;
 	}
 

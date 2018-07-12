@@ -7,8 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Table;
 
 
 /**
@@ -16,25 +15,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * 
  */
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Amenidad implements Serializable {
+@Table(name="amenidad")
+public class AmenidadPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="amenidad_id")
-	private int amenidadId;
+	private Long amenidadId;
 
 	private String descripcion;
-
-	public Amenidad() {
-	}
-
-	public int getAmenidadId() {
+	
+	public Long getAmenidadId() {
 		return this.amenidadId;
 	}
 
-	public void setAmenidadId(int amenidadId) {
+	public void setAmenidadId(Long amenidadId) {
 		this.amenidadId = amenidadId;
 	}
 
@@ -45,5 +41,5 @@ public class Amenidad implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
+	
 }

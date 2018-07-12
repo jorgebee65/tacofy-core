@@ -2,8 +2,8 @@ package com.tacofy.dao;
 
 import java.util.List;
 
-import com.tacofy.po.Taqueria;
+import com.tacofy.po.TaqueriaPO;
 
 public interface TaqueriaDAO {
-	List<Taqueria> getTaquerias();
+	List<TaqueriaPO> getTaquerias();
 }

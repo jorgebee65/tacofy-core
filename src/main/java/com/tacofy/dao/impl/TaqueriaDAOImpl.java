@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tacofy.dao.TaqueriaDAO;
-import com.tacofy.po.Taqueria;
+import com.tacofy.po.TaqueriaPO;
 
 @Transactional
 @Repository
@@ -20,9 +20,9 @@ public class TaqueriaDAOImpl implements TaqueriaDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Taqueria> getTaquerias() {
-		String hql = "FROM Taqueria";
-		return (List<Taqueria>) entityManager.createQuery(hql).getResultList();
+	public List<TaqueriaPO> getTaquerias() {
+		String hql = "FROM TaqueriaPO";
+		return (List<TaqueriaPO>) entityManager.createQuery(hql).getResultList();
 	}
 	
 }

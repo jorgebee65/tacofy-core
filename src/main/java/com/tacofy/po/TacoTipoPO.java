@@ -9,35 +9,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 /**
- * The persistent class for the taqueria_tipo database table.
+ * The persistent class for the taco_tipo database table.
  * 
  */
 @Entity
-@Table(name="taqueria_tipo")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class TaqueriaTipo implements Serializable {
+@Table(name="taco_tipo")
+public class TacoTipoPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="taq_tipo_id")
-	private Long taqTipoId;
+	@Column(name="taco_tipo_id")
+	private Long tacoTipoId;
 
 	private String descripcion;
 
-	public TaqueriaTipo() {
+	public TacoTipoPO() {
 	}
 
-	public Long getTaqTipoId() {
-		return this.taqTipoId;
+	public Long getTacoTipoId() {
+		return this.tacoTipoId;
 	}
 
-	public void setTaqTipoId(Long taqTipoId) {
-		this.taqTipoId = taqTipoId;
+	public void setTacoTipoId(Long tacoTipoId) {
+		this.tacoTipoId = tacoTipoId;
 	}
 
 	public String getDescripcion() {
