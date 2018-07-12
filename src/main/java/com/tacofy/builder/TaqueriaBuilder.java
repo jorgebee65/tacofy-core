@@ -3,9 +3,7 @@ package com.tacofy.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.tacofy.bo.TacoTipoBO;
 import com.tacofy.bo.TaqueriaBO;
-import com.tacofy.po.TacoTipoPO;
 import com.tacofy.po.TaqueriaPO;
 
 public class TaqueriaBuilder {

@@ -23,4 +23,5 @@ public class AmenidadBuilder {
 		return lstBO;
 	}
 	
+	
 }
