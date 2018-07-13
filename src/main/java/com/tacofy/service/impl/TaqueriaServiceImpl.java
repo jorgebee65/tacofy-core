@@ -18,7 +18,17 @@ public class TaqueriaServiceImpl implements TaqueriaService {
 
 	@Override
 	public List<TaqueriaBO> getTaquerias() {
-		return TaqueriaBuilder.buildListBO(taqueriaDAO.getTaquerias());
+		return TaqueriaBuilder.buildListBO(taqueriaDAO.buscar());
+	}
+
+	@Override
+	public TaqueriaBO save(TaqueriaBO bo) {
+		return taqueriaDAO.guardar(bo);
+	}
+
+	@Override
+	public TaqueriaBO find(Long id) {
+		return TaqueriaBuilder.buildBO(taqueriaDAO.buscar(id));
 	}
 	
 }

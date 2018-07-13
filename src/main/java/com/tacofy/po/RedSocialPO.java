@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="red_social")
-public class RedSocial implements Serializable {
+public class RedSocialPO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,7 +21,7 @@ public class RedSocial implements Serializable {
 
 	private String descripcion;
 
-	public RedSocial() {
+	public RedSocialPO() {
 	}
 
 	public int getRedSocId() {

@@ -16,8 +16,10 @@ public class TaqueriaTipoBuilder {
 	}
 
 	public static TaqueriaTipoPO buildPO(TaqueriaTipoBO bo) {
-		// TODO Auto-generated method stub
-		return null;
+		TaqueriaTipoPO po = new TaqueriaTipoPO();
+			po.setTaqTipoId(bo.getId());
+			po.setDescripcion(bo.getDescripcion());
+		return po;
 	}
 	
 	public static List<TaqueriaTipoBO> buildListBO(List<TaqueriaTipoPO> lstPO){
@@ -26,6 +28,14 @@ public class TaqueriaTipoBuilder {
 				lstBO.add(buildBO(po));
 			});
 		return lstBO;
+	}
+	
+	public static List<TaqueriaTipoPO> buildListPO(List<TaqueriaTipoBO> lstBO){
+		List<TaqueriaTipoPO> lstPO = new ArrayList<>();
+			lstBO.forEach(bo ->{
+				lstPO.add(buildPO(bo));
+			});
+		return lstPO;
 	}
 	
 }

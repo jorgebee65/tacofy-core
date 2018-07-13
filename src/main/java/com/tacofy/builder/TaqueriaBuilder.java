@@ -1,6 +1,7 @@
 package com.tacofy.builder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.tacofy.bo.TaqueriaBO;
@@ -26,8 +27,18 @@ public class TaqueriaBuilder {
 	}
 
 	public static TaqueriaPO buildPO(TaqueriaBO bo) {
-		// TODO Auto-generated method stub
-		return null;
+		TaqueriaPO po = new TaqueriaPO();
+			po.setNombre(bo.getNombre());
+			po.setFechaCreacion(new Date());
+			po.setLatitud(bo.getLatitud());
+			po.setLongitud(bo.getLongitud());
+			po.setTelefono(bo.getTelefono());
+			po.setUbicacion(bo.getUbicacion());
+			po.setTaqueriaTipoPO(TaqueriaTipoBuilder.buildPO(bo.getTipo()));
+			po.setAmenidads(AmenidadBuilder.buildListPO(bo.getAmenidades()));
+			po.setTacoTipos(TacoTipoBuilder.buildListPO(bo.getTacos()));
+			
+		return po;
 	}
 	
 	public static List<TaqueriaBO> buildListBO(List<TaqueriaPO> lstPO){

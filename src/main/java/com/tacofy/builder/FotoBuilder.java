@@ -17,9 +17,11 @@ public class FotoBuilder {
 	
 	public static List<FotoBO> buildListBO(List<TaqueriaFotoPO> lstPO){
 		List<FotoBO> lstBO = new ArrayList<>();
+		if(lstPO!=null) {
 			lstPO.forEach(po ->{
 				lstBO.add(buildBO(po));
 			});
+		}
 		return lstBO;
 	}
 }

@@ -23,4 +23,18 @@ public class TacoTipoBuilder {
 		return lstBO;
 	}
 	
+	public static TacoTipoPO buildPO(TacoTipoBO bo) {
+		TacoTipoPO po = new TacoTipoPO();
+			po.setTacoTipoId(bo.getId());
+			po.setDescripcion(bo.getDescripcion());
+		return po;
+	}
+	
+	public static List<TacoTipoPO> buildListPO(List<TacoTipoBO> lstPO){
+		List<TacoTipoPO> lstBO = new ArrayList<>();
+			lstPO.forEach(bo ->{
+				lstBO.add(buildPO(bo));
+			});
+		return lstBO;
+	}
 }

@@ -23,5 +23,18 @@ public class AmenidadBuilder {
 		return lstBO;
 	}
 	
+	public static AmenidadPO buildPO(AmenidadBO bo) {
+		AmenidadPO po = new AmenidadPO();
+		po.setAmenidadId(bo.getId());
+		po.setDescripcion(bo.getDescripcion());
+		return po;
+	}
 	
+	public static List<AmenidadPO> buildListPO(List<AmenidadBO> lstBO){
+		List<AmenidadPO> lstPO = new ArrayList<>();
+			lstBO.forEach(bo ->{
+				lstPO.add(buildPO(bo));
+			});
+		return lstPO;
+	}
 }
