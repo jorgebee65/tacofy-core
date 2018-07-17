@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.tacofy.bo.TaqueriaBO;
+import com.tacofy.exception.ServiceExceptionCO;
+import com.tacofy.handler.error.ApiError;
 import com.tacofy.service.TaqueriaService;
 
 @Controller
@@ -23,7 +26,8 @@ public class TaqueriaController {
 
 	@Autowired
 	private TaqueriaService taqueriaService;
-
+	
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/taquerias", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<TaqueriaBO>> getTaquerias() {
 		return new ResponseEntity<List<TaqueriaBO>>(taqueriaService.getTaquerias(), HttpStatus.OK);
@@ -38,8 +42,9 @@ public class TaqueriaController {
 	}
 	
 	@RequestMapping(value = "/taquerias/{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<TaqueriaBO> getTaqueria(@PathVariable("id") long id) {
-		return new ResponseEntity<TaqueriaBO>(taqueriaService.find(id), HttpStatus.OK);
+	public ResponseEntity<TaqueriaBO> getTaqueria(@PathVariable("id") long id) throws ServiceExceptionCO {
+		TaqueriaBO bo =  taqueriaService.find(id);
+		return new ResponseEntity<TaqueriaBO>(bo, HttpStatus.OK);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.tacofy.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tacofy.bo.TaqueriaBO;
 import com.tacofy.builder.TaqueriaBuilder;
 import com.tacofy.dao.TaqueriaDAO;
+import com.tacofy.exception.DatabaseExceptionCO;
 import com.tacofy.po.TaqueriaPO;
 
 @Transactional
@@ -39,11 +41,17 @@ public class TaqueriaDAOImpl implements TaqueriaDAO {
 	}
 	
 	@Override
-	public TaqueriaPO buscar(Long id) {
+	public TaqueriaPO buscar(Long id) throws DatabaseExceptionCO {
+		TaqueriaPO po = new TaqueriaPO();
 		String hql = "FROM TaqueriaPO where taqId = :taqID";
+		try {
 		Query query = entityManager.createQuery(hql);
         query.setParameter("taqID", id);
-		return (TaqueriaPO)query.getSingleResult();
+        po = (TaqueriaPO)query.getSingleResult();
+		}catch(NoResultException sre) {
+			throw new DatabaseExceptionCO("TaqueriaId "+id+" not founded");
+		}
+		return po;
 	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.tacofy.bo.TaqueriaBO;
 import com.tacofy.builder.TaqueriaBuilder;
 import com.tacofy.dao.TaqueriaDAO;
+import com.tacofy.exception.ServiceExceptionCO;
 import com.tacofy.service.TaqueriaService;
 
 @Service
@@ -27,8 +28,12 @@ public class TaqueriaServiceImpl implements TaqueriaService {
 	}
 
 	@Override
-	public TaqueriaBO find(Long id) {
+	public TaqueriaBO find(Long id) throws ServiceExceptionCO {
+		try {
 		return TaqueriaBuilder.buildBO(taqueriaDAO.buscar(id));
+		}catch(Exception ex) {
+			throw new ServiceExceptionCO(ex.getMessage(), ex);
+		}
 	}
 	
 }
