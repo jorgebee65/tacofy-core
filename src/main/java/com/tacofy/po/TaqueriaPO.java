@@ -2,9 +2,11 @@ package com.tacofy.po;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,6 +47,9 @@ public class TaqueriaPO implements Serializable {
 	private String telefono;
 
 	private String ubicacion;
+	
+	@OneToMany(mappedBy = "taqueriaPO", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<TaqueriaRedPO> redes = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "taq_tipo_id")
@@ -166,6 +171,14 @@ public class TaqueriaPO implements Serializable {
 
 	public void setTaqueriaFotos(List<TaqueriaFotoPO> taqueriaFotos) {
 		this.taqueriaFotos = taqueriaFotos;
+	}
+	
+	public List<TaqueriaRedPO> getRedes() {
+		return redes;
+	}
+
+	public void setRedes(List<TaqueriaRedPO> redes) {
+		this.redes = redes;
 	}
 
 }

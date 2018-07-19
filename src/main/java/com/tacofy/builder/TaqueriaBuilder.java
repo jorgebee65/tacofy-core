@@ -23,6 +23,7 @@ public class TaqueriaBuilder {
 			bo.setAmenidades(AmenidadBuilder.buildListBO(po.getAmenidads()));
 			bo.setTacos(TacoTipoBuilder.buildListBO(po.getTacoTipos()));
 			bo.setFotos(FotoBuilder.buildListBO(po.getTaqueriaFotos()));
+			bo.setRedes(RedSocialBuilder.buildListBO(po.getRedes()));
 		return bo;
 	}
 
@@ -47,6 +48,19 @@ public class TaqueriaBuilder {
 				lstBO.add(buildBO(po));
 			});
 		return lstBO;
+	}
+	
+	public static TaqueriaBO buildSimpleBO(TaqueriaPO po ) {
+		TaqueriaBO bo = new TaqueriaBO();
+			bo.setId(po.getTaqId());
+			bo.setNombre(po.getNombre());
+			bo.setCalificacion(po.getCalificacion());
+			bo.setFechaCreacion(po.getFechaCreacion());
+			bo.setLatitud(po.getLatitud());
+			bo.setLongitud(po.getLongitud());
+			bo.setTelefono(po.getTelefono());
+			bo.setUbicacion(po.getUbicacion());
+		return bo;
 	}
 	
 }

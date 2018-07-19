@@ -17,6 +17,7 @@ public class TaqueriaBO {
 	private List<AmenidadBO> amenidades;
 	private List<TacoTipoBO> tacos;
 	private List<FotoBO> fotos;
+	private List<RedSocialBO> redes;
 	
 	public Long getId() {
 		return id;
@@ -89,5 +90,11 @@ public class TaqueriaBO {
 	}
 	public void setFotos(List<FotoBO> fotos) {
 		this.fotos = fotos;
+	}
+	public List<RedSocialBO> getRedes() {
+		return redes;
+	}
+	public void setRedes(List<RedSocialBO> redes) {
+		this.redes = redes;
 	}
 }
