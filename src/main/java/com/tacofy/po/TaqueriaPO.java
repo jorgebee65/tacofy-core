@@ -48,6 +48,8 @@ public class TaqueriaPO implements Serializable {
 
 	private String ubicacion;
 	
+	private String imagen;
+	
 	@OneToMany(mappedBy = "taqueriaPO", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TaqueriaRedPO> redes = new ArrayList<>();
 
@@ -73,9 +75,9 @@ public class TaqueriaPO implements Serializable {
 		)
 	private List<TacoTipoPO> tacoTipos;
 	
-	@OneToMany
-	@JoinColumn(name="taq_id")
-	private List<TaqueriaFotoPO> taqueriaFotos;
+//	@OneToMany
+//	@JoinColumn(name="taq_id")
+//	private List<TaqueriaFotoPO> taqueriaFotos;
 
 	public Long getTaqId() {
 		return taqId;
@@ -165,13 +167,13 @@ public class TaqueriaPO implements Serializable {
 		this.tacoTipos = tacoTipos;
 	}
 
-	public List<TaqueriaFotoPO> getTaqueriaFotos() {
-		return taqueriaFotos;
-	}
-
-	public void setTaqueriaFotos(List<TaqueriaFotoPO> taqueriaFotos) {
-		this.taqueriaFotos = taqueriaFotos;
-	}
+//	public List<TaqueriaFotoPO> getTaqueriaFotos() {
+//		return taqueriaFotos;
+//	}
+//
+//	public void setTaqueriaFotos(List<TaqueriaFotoPO> taqueriaFotos) {
+//		this.taqueriaFotos = taqueriaFotos;
+//	}
 	
 	public List<TaqueriaRedPO> getRedes() {
 		return redes;
@@ -179,6 +181,14 @@ public class TaqueriaPO implements Serializable {
 
 	public void setRedes(List<TaqueriaRedPO> redes) {
 		this.redes = redes;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 
 }

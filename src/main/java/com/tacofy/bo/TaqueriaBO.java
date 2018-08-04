@@ -18,6 +18,7 @@ public class TaqueriaBO {
 	private List<TacoTipoBO> tacos;
 	private List<FotoBO> fotos;
 	private List<RedSocialBO> redes;
+	private String imagen;
 	
 	public Long getId() {
 		return id;
@@ -96,5 +97,11 @@ public class TaqueriaBO {
 	}
 	public void setRedes(List<RedSocialBO> redes) {
 		this.redes = redes;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 }

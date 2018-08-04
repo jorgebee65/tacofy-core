@@ -35,5 +35,10 @@ public class TaqueriaServiceImpl implements TaqueriaService {
 			throw new ServiceExceptionCO(ex.getMessage(), ex);
 		}
 	}
+
+	@Override
+	public TaqueriaBO update(TaqueriaBO bo) {
+		return taqueriaDAO.actualizar(bo);
+	}
 	
 }

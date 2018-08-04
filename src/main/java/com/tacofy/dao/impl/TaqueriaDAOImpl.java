@@ -19,9 +19,9 @@ import com.tacofy.po.TaqueriaPO;
 @Transactional
 @Repository
 public class TaqueriaDAOImpl implements TaqueriaDAO {
-	
-	@PersistenceContext	
-	private EntityManager entityManager;	
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -39,22 +39,29 @@ public class TaqueriaDAOImpl implements TaqueriaDAO {
 		TaqueriaBO taqueria = TaqueriaBuilder.buildBO(po);
 		return taqueria;
 	}
-	
+
 	@Override
 	public TaqueriaPO buscar(Long id) throws DatabaseExceptionCO {
 		TaqueriaPO po = new TaqueriaPO();
-		String hql = "select t FROM TaqueriaPO t "
-				+ " join fetch t.redes r "
-				+ " join fetch r.redSocialPO "
+		String hql = "select t FROM TaqueriaPO t " + " join fetch t.redes r " + " join fetch r.redSocialPO "
 				+ " where t.taqId = :taqID";
 		try {
-		Query query = entityManager.createQuery(hql);
-        query.setParameter("taqID", id);
-        po = (TaqueriaPO)query.getSingleResult();
-		}catch(NoResultException sre) {
-			throw new DatabaseExceptionCO("TaqueriaId "+id+" not founded");
+			Query query = entityManager.createQuery(hql);
+			query.setParameter("taqID", id);
+			po = (TaqueriaPO) query.getSingleResult();
+		} catch (NoResultException sre) {
+			throw new DatabaseExceptionCO("TaqueriaId " + id + " not founded");
 		}
 		return po;
+	}
+
+	@Override
+	public TaqueriaBO actualizar(TaqueriaBO taqueriaBO) {
+		TaqueriaPO po = new TaqueriaPO();
+		po = TaqueriaBuilder.buildPO(taqueriaBO);
+		entityManager.merge(po);
+		TaqueriaBO taqueria = TaqueriaBuilder.buildBO(po);
+		return taqueria;
 	}
 	
 }
