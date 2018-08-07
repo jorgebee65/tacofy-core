@@ -43,7 +43,7 @@ public class TaqueriaDAOImpl implements TaqueriaDAO {
 	@Override
 	public TaqueriaPO buscar(Long id) throws DatabaseExceptionCO {
 		TaqueriaPO po = new TaqueriaPO();
-		String hql = "select t FROM TaqueriaPO t " + " join fetch t.redes r " + " join fetch r.redSocialPO "
+		String hql = "select t FROM TaqueriaPO t left join fetch t.redes r left join fetch r.redSocialPO "
 				+ " where t.taqId = :taqID";
 		try {
 			Query query = entityManager.createQuery(hql);

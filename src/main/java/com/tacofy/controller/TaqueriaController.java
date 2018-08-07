@@ -53,6 +53,7 @@ public class TaqueriaController {
 		return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}
 
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/taquerias/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<TaqueriaBO> getTaqueria(@PathVariable("id") long id) throws ServiceExceptionCO {
 		TaqueriaBO bo = taqueriaService.find(id);
@@ -103,6 +104,14 @@ public class TaqueriaController {
 		}
 		byte[] image = Files.readAllBytes(path);
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+	}
+	
+	@RequestMapping(value = "/taquerias", method = RequestMethod.PATCH)
+	ResponseEntity<?> update(@RequestBody TaqueriaBO taqueria, UriComponentsBuilder ucBuilder) {
+		TaqueriaBO res = taqueriaService.update(taqueria);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(ucBuilder.path("/tacofy/taquerias/{id}").buildAndExpand(res.getId()).toUri());
+		return new ResponseEntity<String>(headers, HttpStatus.OK);
 	}
 
 }

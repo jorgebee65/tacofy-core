@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,6 +21,7 @@ public class AmenidadController {
 	@Autowired
 	private AmenidadService srvAmenidad;
 	
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value="/amenidades",method= RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<?> getTaquerias() {
 		List<AmenidadBO> list = srvAmenidad.getAmenidadesBO();
